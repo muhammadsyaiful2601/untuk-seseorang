@@ -1,0 +1,40 @@
+/* ===== game.html — fullscreen landscape page ===== */
+.game-page{min-height:100vh; min-height:100dvh; display:flex; flex-direction:column}
+.game-topnav{position:sticky; top:0}
+.game-main{flex:1; width:100%; max-width:1100px; margin:0 auto; padding:14px 14px 30px; position:relative; z-index:10}
+/* pakai ulang style game dari style.css + override fullscreen */
+.game-page .game-shell{padding:14px}
+.game-page #gameCanvas{aspect-ratio:16/7}
+.rotate-hint{position:absolute; inset:0; z-index:20; display:flex; align-items:center; justify-content:center; background:rgba(240,246,255,.92); backdrop-filter:blur(8px); padding:20px; text-align:center}
+.rotate-card{max-width:420px; background:#fff; border:1px solid var(--line); border-radius:22px; padding:34px 28px; box-shadow:var(--shadow)}
+.rotate-icon{font-size:52px; animation:tilt 1.6s ease-in-out infinite}
+@keyframes tilt{0%,100%{transform:rotate(0)}30%{transform:rotate(-18deg)}60%{transform:rotate(72deg)}}
+.rotate-title{font-family:"Cormorant Garamond",serif; font-size:32px; margin:10px 0 8px; color:#1e3a5f}
+.rotate-card p{color:var(--muted); line-height:1.7; margin:0}
+.reward-actions{margin-top:18px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.btn-outline.small-dark{border:1px solid #b9d4f2; color:#2f6cb3; background:#fff; border-radius:999px; padding:10px 20px; text-decoration:none; font-weight:700; font-size:13px}
+/* teaser di index.html */
+.game-teaser-card{text-align:center; border:1px solid var(--line); border-radius:26px; padding:52px 32px; background:radial-gradient(600px 240px at 50% 0%, rgba(244,167,195,.22), transparent), linear-gradient(180deg, #ffffff, #eef4ff); box-shadow:var(--shadow)}
+.teaser-badge{display:inline-block; font-size:11px; letter-spacing:.3em; font-weight:800; color:#fff; background:linear-gradient(135deg, #4a90d9, #f4a7c3); padding:8px 18px; border-radius:999px; margin-bottom:18px}
+.game-teaser-card h2{font-size:clamp(30px,5vw,54px); margin:0 0 12px; color:#1e3a5f}
+.game-teaser-card h2 em{background:linear-gradient(135deg, #4a90d9, #f4a7c3); -webkit-background-clip:text; background-clip:text; color:transparent}
+.game-teaser-card p{color:var(--muted); max-width:600px; margin:0 auto 20px; line-height:1.8}
+.game-teaser-card p b{color:#2f6cb3}
+.teaser-steps{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:26px}
+.teaser-steps span{background:#fff; border:1px solid rgba(74,144,217,.25); color:#1e3a5f; padding:9px 16px; border-radius:999px; font-size:13px; font-weight:600; box-shadow:0 4px 14px rgba(74,144,217,.1)}
+.teaser-note{margin-top:14px; font-size:12px; color:#9db4cc}
+/* LANDSCAPE LOCK: HP portrait = game dikunci, muncul suruhan putar */
+@media (max-width:820px) and (orientation:portrait){
+  .game-page .game-wrap canvas{filter:blur(6px) brightness(.5)}
+  .game-page .game-controls{opacity:.35; pointer-events:none; filter:grayscale(.5)}
+}
+@media (orientation:landscape) and (max-height:500px){
+  .game-main{max-width:100%; padding:8px 10px 16px}
+  .game-page .game-shell{padding:10px}
+  .game-hud{margin-bottom:8px}
+  .hud-item{padding:6px 10px; min-width:90px}
+  .hud-item strong{font-size:20px}
+  .game-page #gameCanvas{aspect-ratio:auto; height:52vh}
+  .game-controls{margin-top:8px}
+  .gc-btn{height:48px}
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday — Zahra Aulia Fitri • 5 November</title>
+  <meta name="description" content="A private birthday celebration for Zahra Aulia Fitri — 5 November." />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grain"></div>
+  <canvas id="confetti"></canvas>
+  <audio class="song" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+  <!-- GATE -->
+  <div class="loader" id="gate">
+    <div class="gate-card">
+      <div class="gate-eyebrow">A PRIVATE CELEBRATION — 05 . 11</div>
+      <div class="gate-monogram">Z</div>
+      <h1 class="gate-title">Zahra Aulia Fitri<br /><span class="gate-date">05 November</span></h1>
+      <p class="gate-sub">Sebuah perayaan kecil yang disiapkan khusus untukmu.<br />Nyalakan suara & buka dengan perlahan.</p>
+      <button id="play" class="btn-gold"><span class="btn-icon">&#9654;</span> Buka Undangan</button>
+      <div class="gate-hint">Klik untuk memulai &bull; Ada musik &bull; Terbaik di HP / Laptop</div>
+    </div>
+  </div>
+  <nav class="topnav">
+    <div class="nav-inner">
+      <div class="brand"><span class="brand-mark">ZAF</span><span class="brand-line"></span><span class="brand-sub">05 . 11</span></div>
+      <div class="nav-actions">
+        <a href="#countdown" class="pill-btn ghost hide-mobile">Countdown</a>
+        <a href="#gallery" class="pill-btn ghost hide-mobile">Galeri</a>
+        <a href="game.html" class="pill-btn ghost">🎮 Main Game</a>
+        <button id="musicToggle" class="pill-btn">&#9835; <span>Music: Off</span></button>
+      </div>
+    </div>
+  </nav>
+  <main class="main" style="display:none">
+    <section class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-12 col-lg-5">
+            <div class="photo-frame reveal">
+              <div class="photo-frame-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="frame-label">ZAHRA • 05 . 11 . 2026</span></div>
+              <div class="photo-main"><img id="heroPhoto" src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19.jpeg" alt="Foto spesial" /><div class="photo-shine"></div></div>
+              <div class="photo-thumbs">
+                <img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(1).jpeg" data-full="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(1).jpeg" class="thumb active" alt="thumb 1" />
+                <img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg" data-full="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg" class="thumb" alt="thumb 2" />
+                <img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(3).jpeg" data-full="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(3).jpeg" class="thumb" alt="thumb 3" />
+                <img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg" data-full="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg" class="thumb" alt="thumb 4" />
+              </div>
+              <div class="photo-caption"><span class="caption-heart">&hearts;</span> My Favorite Person</div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-7">
+            <div class="eyebrow reveal">HAPPY BIRTHDAY — 05 NOVEMBER</div>
+            <h1 class="display-name reveal"><span class="small">Selamat Ulang Tahun,</span><br /><span id="name" class="area">Zahra Aulia Fitri</span></h1>
+            <div class="divider reveal"><span></span><i>&#10022;</i><span></span></div>
+            <div class="type-wrap reveal">
+              <div id="typed-strings" class="typing">
+                <h2>05 November — hari di mana dunia menjadi lebih baik karena kamu lahir.</h2>
+                <h2>Zahra, terima kasih sudah menjadi perempuan yang kuat dan lembut.</h2>
+                <h2>Semoga semua doa baikmu satu per satu dikabulkan tahun ini.</h2>
+                <h2>Happy Birthday, <i id="nae">Zahra Aulia Fitri</i>. This day is entirely yours.</h2>
+              </div>
+              <span id="typed" style="white-space:pre-wrap;"></span>
+            </div>
+            <p class="hero-desc reveal">Perayaan privat ini disiapkan khusus untuk <b>Zahra Aulia Fitri</b> — 5 November. Gulir ke bawah: ada hitung mundur, galeri, dan sepucuk surat yang kutulis hanya untukmu.</p>
+            <div class="hero-cta reveal"><a href="#letter" class="btn-gold">Baca Surat Untukmu</a><a href="#gallery" class="btn-outline">Lihat Galeri</a></div>
+            <div class="hero-meta reveal">
+              <div class="meta-item"><strong>Kamis, 5 November 2026</strong><span>Tanggal Perayaan</span></div>
+              <div class="meta-item"><strong>ZAF</strong><span>Inisial Kehormatan</span></div>
+              <div class="meta-item"><strong>05 . 11</strong><span>Hari Spesial</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="countdown" class="section countdown-sec"><div class="container">
+      <div class="sec-head reveal"><div class="eyebrow">SAVE THE DATE — 05 . 11 . 2026</div><h2>Menuju <em>5 November</em></h2><p id="countdownLabel">Menghitung mundur menuju hari lahir Zahra Aulia Fitri.</p></div>
+      <div class="count-grid reveal">
+        <div class="count-card"><strong id="cdD">00</strong><span>Hari</span></div>
+        <div class="count-sep">:</div>
+        <div class="count-card"><strong id="cdH">00</strong><span>Jam</span></div>
+        <div class="count-sep">:</div>
+        <div class="count-card"><strong id="cdM">00</strong><span>Menit</span></div>
+        <div class="count-sep">:</div>
+        <div class="count-card gold"><strong id="cdS">00</strong><span>Detik</span></div>
+      </div>
+      <div class="count-note reveal">Kamis, 5 November 2026 — 00:00 WIB • Zahra Aulia Fitri</div>
+    </div></section>
+    <section class="strip"><div class="container"><div class="strip-card reveal"><div class="strip-quote">&ldquo;Zahra, di antara semua hal baik di dunia, kamu adalah hal terbaik yang pernah datang dalam hidupku.&rdquo;</div><div class="strip-sub">— UNTUK ZAHRA AULIA FITRI • 05 NOVEMBER</div></div></div></section>
+    <section id="gallery" class="section"><div class="container">
+      <div class="sec-head reveal"><div class="eyebrow">CHAPTER 01 — GALLERY • ZAHRA</div><h2>Momen Zahra yang Selalu <em>Aku Jaga Baik-Baik</em></h2><p>Koleksi privat dari folder <code>mylove</code> — klik foto untuk memperbesar.</p></div>
+      <div class="gallery-grid">
+        <figure class="g-card tall reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19.jpeg" alt="Mylove 1" loading="lazy" /><figcaption><span>01 — Senyummu</span><small>My favorite view</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(1).jpeg" alt="Mylove 2" loading="lazy" /><figcaption><span>02 — Cantikmu</span><small>Effortlessly beautiful</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg" alt="Mylove 3" loading="lazy" /><figcaption><span>03 — Ketulusanmu</span><small>Kind and sincere</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(3).jpeg" alt="Mylove 4" loading="lazy" /><figcaption><span>04 — Tawamu</span><small>Light of my days</small></figcaption></figure>
+        <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg" alt="Mylove 5" loading="lazy" /><figcaption><span>05 — Kamu, Apa Adanya</span><small>And I love every part</small></figcaption></figure>
+      </div>
+    </div></section>
+    <section id="game-teaser" class="section"><div class="container">
+      <div class="game-teaser-card reveal">
+        <div class="teaser-badge">BONUS STAGE — LANDSCAPE</div>
+        <h2>Misi Ulang Tahun: <em>Kumpulkan Kue & Kartu!</em></h2>
+        <p>Game mini ala Mario Bros di halaman khusus — wajib dimainkan dalam posisi <b>landscape</b>. Ambil kue & kartu, hindari musuh, kumpulkan foto Zahra di langit!</p>
+        <div class="teaser-steps"><span>🎂 3 Kue</span><span>💌 3 Kartu</span><span>📸 5 Foto</span><span>👾 5 Musuh</span></div>
+        <a href="game.html" class="btn-gold">🎮 Main Sekarang — Buka Halaman Game</a>
+        <div class="teaser-note">Di HP: putar HP ke landscape untuk pengalaman terbaik</div>
+      </div>
+    </div></section>
+    <section id="letter" class="section"><div class="container"><div class="row g-4">
+      <div class="col-12 col-lg-5"><div class="sec-head reveal" style="text-align:left;margin:0">
+        <div class="eyebrow">CHAPTER 02 — LETTER • 05 . 11</div><h2>Surat Untuk <em>Zahra</em></h2>
+        <p>Ditulis khusus untuk Zahra Aulia Fitri, dibaca tepat pada 5 November. Maaf kalau aku tidak selalu pandai merangkai kata — tapi kali ini izinkan aku jujur.</p>
+        <div class="letter-meta"><div><span>UNTUK</span><strong>Zahra Aulia Fitri</strong></div><div><span>TANGGAL</span><strong>05 November 2026</strong></div></div>
+        <div class="letter-sign"><div class="sign-name">— Dari aku, yang selalu sayang Zahra</div><button id="celebrateBtn" class="btn-gold small">Rayakan Zahra!</button></div>
+      </div></div>
+      <div class="col-12 col-lg-7"><article class="letter-card reveal">
+        <div class="letter-head"><span>ZAHRA AULIA FITRI • 05 . 11 . 2026</span><span class="seal">with &hearts;</span></div>
+        <p>Hai <b class="js-name">Zahra Aulia Fitri</b>,</p>
+        <p>Selamat ulang tahun, Zahra. Tepat pada 5 November ini, aku hanya ingin kamu tahu satu hal: kehadiranmu membuat banyak hal menjadi lebih baik.</p>
+        <p>Kamu itu kuat, lembut, dan tulus. Aku melihat bagaimana kamu berjuang dalam diam, bagaimana kamu tetap peduli pada orang lain bahkan saat kamu sendiri lelah. Aku bangga padamu, Zahra — lebih dari yang bisa kuucapkan.</p>
+        <p>Doaku untukmu tahun ini sederhana tapi sungguh-sungguh: semoga Allah memberimu kesehatan, ketenangan hati, kemudahan dalam setiap urusan, dan dikabulkannya semua mimpi baik yang selama ini kamu simpan.</p>
+        <p>Kalau nanti kamu lelah atau sedih, buka lagi halaman ini. Ingat bahwa pada 5 November ini — dan setiap hari setelahnya — ada seseorang yang selalu mendoakanmu dan merayakanmu dengan bangga.</p>
+        <p class="letter-end">Selamat bertambah usia, Zahra Aulia Fitri.<br />Mari tumbuh bersama, pelan-pelan tapi pasti.</p>
+        <div class="letter-foot"><div class="wishes"><span class="wish">Sehat selalu</span><span class="wish">Tenang hatinya</span><span class="wish">Tercapai mimpinya</span></div></div>
+      </article></div>
+    </div></div></section>
+    <section class="section"><div class="container">
+      <div class="sec-head reveal"><div class="eyebrow">CHAPTER 03 — WISHES • FOR ZAHRA</div><h2>Tiga Doa Terbaikku <em>Untuk Zahra</em></h2><p>Ditulis pada 5 November, khusus untuk Zahra Aulia Fitri.</p></div>
+      <div class="row g-4">
+        <div class="col-12 col-md-4"><div class="wish-card reveal"><div class="wish-num">01</div><h3>Zahra, Tetap Jadi Dirimu</h3><p>Zahra tidak perlu berubah menjadi orang lain. Jujur, tulus, dan apa adanya — itu yang paling aku kagumi darimu.</p><div class="wish-tag">05 . 11 . 2026</div></div></div>
+        <div class="col-12 col-md-4"><div class="wish-card reveal"><div class="wish-num">02</div><h3>Dikejar Hal Baik</h3><p>Semoga setelah 5 November ini, rezeki, kesehatan, dan orang-orang baik selalu menemukan jalannya kepada Zahra.</p><div class="wish-tag">AMIIIN</div></div></div>
+        <div class="col-12 col-md-4"><div class="wish-card reveal"><div class="wish-num">03</div><h3>Kita, Lebih Jauh</h3><p>Semoga aku diberi kesempatan menemani Zahra merayakan banyak 5 November berikutnya — dengan lebih baik setiap tahunnya.</p><div class="wish-tag">FOREVER</div></div></div>
+      </div>
+    </div></section>
+    <footer class="footer"><div class="container"><div class="foot-inner reveal">
+      <div class="foot-eyebrow">05 . 11 . 2026 — SAVE THE DATE</div>
+      <div class="foot-big">Happy Birthday, <span class="js-name">Zahra Aulia Fitri</span></div>
+      <p class="foot-date">Kamis, 5 November 2026 • With love, for Zahra</p>
+      <div class="foot-actions"><button id="replayBtn" class="pill-btn">Putar Ulang Confetti</button><a href="#countdown" class="pill-btn ghost">Kembali ke Countdown</a></div>
+    </div></div></footer>
+  </main>
+  <div id="lightbox" class="lightbox" aria-hidden="true"><button class="lb-close">&times;</button><img id="lbImg" src="" alt="preview" /><div class="lb-cap" id="lbCap"></div></div>
+  <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/typed.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

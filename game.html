@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Mini Game — Misi Ulang Tahun Zahra • 05 November</title>
+  <meta name="description" content="Mini game landscape: kumpulkan kue & kartu untuk Zahra Aulia Fitri." />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body class="game-page">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-grain"></div>
+  <nav class="topnav game-topnav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand" style="text-decoration:none;color:inherit"><span class="brand-mark">ZAF</span><span class="brand-line"></span><span class="brand-sub">05 . 11 • GAME</span></a>
+      <div class="nav-actions">
+        <a href="index.html" class="pill-btn ghost">← Kembali</a>
+        <button id="gameRestartBtnTop" class="pill-btn">↺ Ulangi</button>
+      </div>
+    </div>
+  </nav>
+  <main class="game-main">
+    <div class="game-shell">
+      <div class="game-hud">
+        <div class="hud-item"><span>SCORE</span><strong id="gScore">0</strong></div>
+        <div class="hud-item"><span>KUE</span><strong id="gCake">0/3</strong></div>
+        <div class="hud-item"><span>KARTU</span><strong id="gCard">0/3</strong></div>
+        <div class="hud-item"><span>FOTO</span><strong id="gPhoto">0</strong></div>
+        <div class="hud-item"><span>LEVEL</span><strong id="gLevel">1/3</strong></div>
+        <div class="hud-item lives"><span>NYAWA</span><strong id="gLives">♥♥♥</strong></div>
+      </div>
+      <div class="game-wrap">
+        <canvas id="gameCanvas" width="960" height="420"></canvas>
+        <div id="gameOverlay" class="game-overlay">
+          <div class="go-title" id="goTitle">Siap Main?</div>
+          <div class="go-sub" id="goSub">Lompat & lari untuk mengumpulkan semua kue dan kartu untuk Zahra!</div>
+          <button id="gameStartBtn" class="btn-gold small">▶ Mulai Misi</button>
+          <div class="go-controls">← → / A D bergerak • SPASI / ↑ / W lompat • Di HP pakai tombol di bawah</div>
+        </div>
+        <div id="rotateHint" class="rotate-hint" style="display:none">
+          <div class="rotate-card">
+            <div class="rotate-icon">📱↻</div>
+            <div class="rotate-title">Putar HP ke Landscape!</div>
+            <p>Game ini wajib dimainkan menyamping agar seru.<br />Putar HP kamu sekarang ya, Zahra ♥</p>
+          </div>
+        </div>
+      </div>
+      <div class="game-controls">
+        <div class="gc-left"><button id="btnLeft" class="gc-btn">◀</button><button id="btnRight" class="gc-btn">▶</button></div>
+        <div class="gc-mid"><button id="gameRestartBtn" class="pill-btn">↺ Ulangi</button></div>
+        <div class="gc-right"><button id="btnJump" class="gc-btn jump">⤒ LOMPAT</button></div>
+      </div>
+      <div class="game-goal">🎯 Level <b id="goalLevel">1</b>/3 • Kumpulkan 3 kue + 3 kartu → ke bendera FINISH → lanjut level! Tamatkan semua → kartu rahasia terbuka!</div>
+      <div id="gameReward" class="game-reward" style="display:none">
+        <div class="reward-card">
+          <div class="reward-eyebrow">MISSION COMPLETE — 05 . 11 . 2026</div>
+          <div class="reward-title" id="rewardTitle">Untuk Zahra Aulia Fitri ♥</div>
+          <p id="rewardText">Yeay! Kamu berhasil mengumpulkan semua kue & kartu! Ini bukti kamu pantang menyerah — sama seperti Zahra yang selalu kuat. Selamat ulang tahun!</p>
+          <div class="reward-photos"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19.jpeg" alt="Zahra 1" /><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(1).jpeg" alt="Zahra 2" /><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg" alt="Zahra 3" /></div>
+          <div class="reward-actions"><button id="rewardBtn" class="btn-gold small">▶ Lanjut ke Level 2</button> <a href="index.html" class="btn-outline small-dark">← Kejutan Utama</a></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="js/game.js"></script>
+</body>
+</html>
