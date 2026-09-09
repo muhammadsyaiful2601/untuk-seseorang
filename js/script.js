@@ -44,7 +44,7 @@ function tickCountdown(){
   setText("cdD", pad(d)); setText("cdH", pad(h)); setText("cdM", pad(m)); setText("cdS", pad(s));
   if(label){
     var opts = { day:"numeric", month:"long", year:"numeric" };
-    try{ label.textContent = "Menghitung mundur menuju " + target.toLocaleDateString("id-ID", opts) + " — hari lahir Zahra Aulia Fitri."; }catch(e){}
+    try{ label.textContent = "Menghitung mundur menuju " + target.toLocaleDateString("id-ID", opts) + " — hari Ulang Tahun Zahra Aulia Fitri."; }catch(e){}
   }
 }
 function setText(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; }

@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Mini Game — Misi Ulang Tahun Zahra • 05 November</title>
-  <meta name="description" content="Mini game landscape: kumpulkan kue & kartu untuk Zahra Aulia Fitri." />
+  <meta name="description" content="Mini game landscape: kumpulkan kue, kartu, foto, injak musuh & kumpulkan powerup untuk Zahra Aulia Fitri." />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,7 +33,10 @@
         <div class="hud-item"><span>KUE</span><strong id="gCake">0/3</strong></div>
         <div class="hud-item"><span>KARTU</span><strong id="gCard">0/3</strong></div>
         <div class="hud-item"><span>FOTO</span><strong id="gPhoto">0</strong></div>
+        <div class="hud-item"><span>JATUH</span><strong id="gStomp">0</strong></div>
         <div class="hud-item"><span>LEVEL</span><strong id="gLevel">1/3</strong></div>
+        <div class="hud-item"><span>WAKTU</span><strong id="gTime">0:00</strong></div>
+        <div class="hud-item"><span>POWERUP</span><strong id="gPower">—</strong></div>
         <div class="hud-item lives"><span>NYAWA</span><strong id="gLives">♥♥♥</strong></div>
       </div>
       <div class="game-wrap">
@@ -56,7 +60,7 @@
         <div class="gc-mid"><button id="gameRestartBtn" class="pill-btn">↺ Ulangi</button></div>
         <div class="gc-right"><button id="btnJump" class="gc-btn jump">⤒ LOMPAT</button></div>
       </div>
-      <div class="game-goal">🎯 Level <b id="goalLevel">1</b>/3 • Kumpulkan 3 kue + 3 kartu → ke bendera FINISH → lanjut level! Tamatkan semua → kartu rahasia terbuka!</div>
+      <div class="game-goal">🎯 Level <b id="goalLevel">1</b>/3 — <span id="gPlace" class="goal-place">Taman Biru Pagi</span> • <span id="gMission" class="goal-mission">Kumpulkan 3 🎂 + 3 💌 → FINISH</span></div>
       <div id="gameReward" class="game-reward" style="display:none">
         <div class="reward-card">
           <div class="reward-eyebrow">MISSION COMPLETE — 05 . 11 . 2026</div>
