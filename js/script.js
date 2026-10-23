@@ -96,6 +96,7 @@ function openEnvelope(callback){
   }, 1400);
 }
 function playTrack(i){
+  var n = PLAYLIST.length;
   if(i < 0) i = n - 1; if(i >= n) i = 0;
   curTrack = i;
   var t = PLAYLIST[curTrack];
@@ -521,7 +522,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (i = 0; i < confettiRibbonCount; i++) {
             confettiRibbons[i] = new ConfettiRibbon(random() * canvasWidth, -random() * canvasHeight * 2, ribbonPaperCount, ribbonPaperDist, ribbonPaperThick, 45, 1, 0.05);
         }
-        var confettiPapers = new Array();
+        var confettiPapers = window.confettiPapers = new Array();
         ConfettiPaper.bounds = new Vector2(canvasWidth, canvasHeight);
         for (i = 0; i < confettiPaperCount; i++) {
             confettiPapers[i] = new ConfettiPaper(random() * canvasWidth, random() * canvasHeight);

@@ -1,0 +1,16 @@
+KATA SONG — Playlist Untuk Zahra
+================================
+
+Playlist sudah ter-link ke file actual sesuai lemarih:
+
+1.  The 1975 - About You (Official).mp3
+2.  For_Revenge_feat._Stereowall_-_Jakarta_Hari_Ini_(mp3.pm).mp3
+3.  Raim Laode - Dialog Rindu Lirik Video.mp3
+4.  Vionita_-_Dia_Masa_Lalumu_Aku_Masa_Depanmu_(mp3.pm).mp3
+5.  Mighfar Suganda - Anti ∞ Hero Official Lyric Video.mp3
+
+NOTE:
+- Jika one file di-rename atau di-move, update js/script.js → PLAYLIST
+  atau kabari aku supaya aku sync.
+- File root "music.mp3" lama tak diperlukan lagi.
+- Semua file harus MP3, ukuran bebas.
