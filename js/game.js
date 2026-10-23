@@ -20,7 +20,11 @@ var PHOTO_SRC = [
   "mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(1).jpeg",
   "mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg",
   "mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(3).jpeg",
-  "mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg"
+  "mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg",
+  "mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.51.jpeg",
+  "mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52%20(1).jpeg",
+  "mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52%20(2).jpeg",
+  "mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52.jpeg"
 ];
 var photos = PHOTO_SRC.map(function(s){ var im=new Image(); im.src=s; return im; });
 // audio mungil via WebAudio
@@ -93,7 +97,7 @@ function genLevel(lv){
     enemies.push({x:ex,y:fly?Math.round(rand(205,295)):GROUND_Y-eh,w:ew,h:eh,vx:(Math.random()<0.5?-1:1)*sp,alive:true,type:type,fly:fly,ph:rand(0,6),min:Math.max(60,ex-150),max:Math.min(worldW-60,ex+150),turnT:(type==="patrol"?rand(1.2,2.2):0),shootT:fly?rand(1.2,2.2):0});
   }
   var skyPhotos=[];
-  for(var s=0;s<5;s++){ skyPhotos.push({x:Math.round(280+s*((worldW-560)/4)+rand(-60,60)),y:Math.round(rand(C.photoY[0],C.photoY[1])),img:s%5,taken:false,ph:rand(0,6)}); }
+  for(var s=0;s<6;s++){ skyPhotos.push({x:Math.round(240+s*((worldW-480)/5)+rand(-60,60)),y:Math.round(rand(C.photoY[0],C.photoY[1])),img:s%PHOTO_SRC.length,taken:false,ph:rand(0,6)}); }
   // powerup random: shield=anti luka, star=kebal+cepat, heart=+nyawa, clock=+waktu
   var powerups=[];
   var kinds=shuffle(C.powerups.slice());
@@ -150,7 +154,7 @@ function hideReward(){ var r=document.getElementById("gameReward"); if(r) r.styl
 function overlap(a,b){ return a.x<b.x+b.w && a.x+a.w>b.x && a.y<b.y+b.h && a.y+a.h>b.y; }
 function hurt(){
   var p=state.player;
-  if(p.inv>0||state.over||state.win) return;
+  if(p.inv>0||state.shieldT>0||state.starT>0||state.over||state.win) return; // shield/star = kebal
   state.lives--; p.inv=2; sndHurt(); updateHUD();
   if(state.lives<=0){ state.over=true; state.running=false; showOverlay("Yaah, Jatuh!","Nyawamu habis. Tenang, cinta Zahra tidak ada habisnya — coba lagi ya!","↻ Coba Lagi"); }
   else { p.x=Math.max(10,state.camX+80); p.y=150; p.vx=0; p.vy=0; }
@@ -175,8 +179,12 @@ function step(dt){
     }
   }
   if(p.inv>0) p.inv-=dt;
+  if(state.shieldT>0) state.shieldT-=dt;
+  if(state.starT>0) state.starT-=dt;
   for(var e=0;e<state.enemies.length;e++){ var en=state.enemies[e]; if(!en.alive) continue;
     en.x+=en.vx*dt;
+    // patrol: ganti arah sendiri tiap turnT detik (gerak tak terduga)
+    if(en.type==="patrol"&&en.turnT>0){ en.turnT-=dt; if(en.turnT<=0){ en.turnT=rand(1.2,2.2); en.vx=-en.vx; } }
     if(en.min!==undefined){ if(en.x<en.min){en.x=en.min;en.vx=Math.abs(en.vx);} if(en.x>en.max){en.x=en.max;en.vx=-Math.abs(en.vx);} }
     else { if(en.x<50||en.x>WORLD_W-60) en.vx*=-1; }
     var pb={x:p.x-4,y:p.y-4,w:p.w+8,h:p.h+8}, eb={x:en.x,y:en.y,w:en.w,h:en.h};
@@ -187,7 +195,7 @@ function step(dt){
       sndShot();
     } }
     if(overlap(pb,eb)){
-      if(p.vy>120 && (p.y+p.h-en.y)<24){ en.alive=false; p.vy=-380; state.score+=150; sndCoin(); updateHUD(); }
+      if(p.vy>120 && (p.y+p.h-en.y)<24){ en.alive=false; p.vy=-380; state.score+=(state.starT>0?300:150); state.stompN=(state.stompN||0)+1; sndCoin(); updateHUD(); }
       else hurt();
     }
   }
@@ -201,6 +209,14 @@ function step(dt){
   grab(state.cakeItems,function(){ state.cakeN++; state.score+=100; sndCoin(); flash("🎂 +100"); updateHUD(); });
   grab(state.cardItems,function(){ state.cardN++; state.score+=100; sndCoin(); flash("💌 +100"); updateHUD(); });
   grab(state.skyPhotos,function(){ state.photoN++; state.score+=50; sndCoin(); flash("📸 +50"); updateHUD(); });
+  grab(state.powerups,function(it){
+    sndPower();
+    if(it.kind==="shield"){ state.shieldT=6; flash("🛡 Perisai 6s!"); }
+    else if(it.kind==="star"){ state.starT=5; flash("⭐ Kebal + skor ganda 5s!"); }
+    else if(it.kind==="heart"){ state.lives=Math.min(5,state.lives+1); flash("♥ +1 Nyawa!"); }
+    else if(it.kind==="clock"){ state.timeLeft=(state.timeLeft||0)+30; flash("⏱ +30 detik!"); }
+    updateHUD();
+  });
   var fl=state.flags[0];
   var needCake = state.needCake, needCard = state.needCard;
   if(p.x+p.w>=fl.x){
@@ -209,6 +225,7 @@ function step(dt){
   }
   if(p.y>H+80) hurt();
   state.camX=Math.max(0,Math.min(WORLD_W-W, p.x-W*0.38));
+  if(state.cfg && state.cfg.time>0 && state.running && !state.timeUp){ state.timeLeft -= dt; if(state.timeLeft<=0){ state.timeLeft=0; state.timeUp=true; state.running=false; showOverlay("Waktu Habis!","Waktu kejar telah habis. Coba lagi, Zahra!","↻ Coba Lagi"); } }
 }
 // popup teks kecil di canvas (feedback ambil item)
 function flash(msg){ state.flashMsg=msg; state.flashT=1.4; }
@@ -284,6 +301,17 @@ function drawPlayer(){
   ctx.strokeStyle="#f06a9b"; ctx.lineWidth=1.5; ctx.beginPath(); ctx.arc(x+17,y+12-bob,4,0.2,Math.PI-0.2); ctx.stroke();
   ctx.restore(); ctx.globalAlpha=1;
 }
+function drawPowerup(pu){ var x=pu.x-state.camX, y=pu.y, bob=Math.sin(state.t*4+pu.x*0.05)*3, col=puColor(pu.kind);
+  ctx.save();
+  ctx.fillStyle="rgba(30,58,95,.22)"; ctx.beginPath(); ctx.ellipse(x+16,y+34,22,5,0,0,7); ctx.fill();
+  ctx.fillStyle="rgba(255,255,255,.75)"; rr(x-14,y-14+bob,60,52,12); ctx.fill();
+  ctx.strokeStyle=col; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(x+16,y+16+bob,15,0,7); ctx.stroke();
+  ctx.fillStyle=col; ctx.beginPath(); ctx.arc(x+16,y+16+bob,10,0,7); ctx.fill();
+  ctx.fillStyle="#fff"; ctx.font="bold 13px sans-serif"; ctx.textAlign="center"; ctx.fillText(puIcon(pu.kind),x+16,y+21+bob);
+  ctx.restore();
+}
+function puColor(k){ return k==="shield"?"#4a90d9":k==="star"?"#f06a9b":k==="heart"?"#e91e63":k==="clock"?"#c27e9c":"#4a90d9"; }
+function puIcon(k){ return k==="shield"?"🛡":k==="star"?"★":k==="heart"?"♥":k==="clock"?"⏱":"✨"; }
 function drawEnemy(en){
   var img = en.fly ? ENEMY_PNG.terbang : ENEMY_PNG.darat;
   var x=en.x-state.camX, y=en.y, wob=Math.sin(state.t*8+en.x*0.05)*2;
@@ -362,6 +390,7 @@ function render(){
   }
   for(k=0;k<state.cakeItems.length;k++) if(!state.cakeItems[k].taken) drawCake(state.cakeItems[k].x-state.camX,state.cakeItems[k].y,1.15);
   for(k=0;k<state.cardItems.length;k++) if(!state.cardItems[k].taken) drawCard(state.cardItems[k].x-state.camX,state.cardItems[k].y,1.15);
+  if(state.powerups) for(k=0;k<state.powerups.length;k++) if(!state.powerups[k].taken) drawPowerup(state.powerups[k]);
   for(k=0;k<state.enemies.length;k++) if(state.enemies[k].alive) drawEnemy(state.enemies[k]);
   drawShots();
   drawPlayer();
@@ -397,6 +426,7 @@ function loop(ts){
   var dt=Math.min(0.033,(ts-last)/1000||0.016); last=ts;
   if(state.running){ step(dt); }
   render();
+  updateHUD();
 }
 reset(); requestAnimationFrame(loop);
 // Tombol START punya 3 mode: mulai / lanjut level / ulangi

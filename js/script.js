@@ -1,5 +1,5 @@
 var sf = null;
-try { sf = new Snowflakes({ color: "#8fc1f5", count: 12, minSize: 6, maxSize: 14 }); } catch(e){}
+try { sf = new Snowflakes({ color: "#b48a54", count: 10, minSize: 5, maxSize: 12 }); } catch(e){}
 var BIRTHDAY = { name: "Zahra Aulia Fitri", day: 5, month: 10, year: 2026, label: "Kamis, 5 November 2026" };
 // month is 0-indexed: 10 = November
 function getTargetDate(){
@@ -50,21 +50,86 @@ function tickCountdown(){
 function setText(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; }
 tickCountdown(); setInterval(tickCountdown, 1000);
 $(".main").hide();
-var musicOn = false;
-function setMusic(on){
-  var audio = $(".song")[0];
-  musicOn = on;
+// ===== MUSIC PLAYER — Playlist Untuk Zahra (5 lagu) =====
+var PLAYLIST = [
+  { t: "About You",                        f: "music/The%201975%20-%20About%20You%20(Official).mp3" },
+  { t: "Jakarta Hari Ini",                 f: "music/For_Revenge_feat._Stereowall_-_Jakarta_Hari_Ini_(mp3.pm).mp3" },
+  { t: "Dialog Rindu",                     f: "music/Raim%20Laode%20-%20Dialog%20Rindu%20Lirik%20Video.mp3" },
+  { t: "Dia Masa Lalumu, Aku Masa Depanmu", f: "music/Vionita_-_Dia_Masa_Lalumu_Aku_Masa_Depanmu_(mp3.pm).mp3" },
+  { t: "Anti-Hero",                        f: "music/Mighfar%20Suganda%20-%20Anti%20%E2%88%9E%20Hero%20Official%20Lyric%20Video.mp3" }
+];
+var musicOn = false, curTrack = 0;
+var audioEl = $(".song")[0];
+if(audioEl){ try{ audioEl.src = PLAYLIST[0].f; }catch(e){} }
+function mpSet(id, v){ var el = document.getElementById(id); if(el) el.textContent = v; }
+function musicUI(){
   var label = $("#musicToggle span");
-  if(on){ try{ audio.play(); }catch(e){} if(label.length) label.text("Music: On"); }
-  else { audio.pause(); if(label.length) label.text("Music: Off"); }
+  if(label.length) label.text("Music: " + (musicOn ? "On" : "Off"));
+  var pl = $("#musicPlayer");
+  if(pl.length) pl.toggleClass("playing", musicOn);
+  var pb = $("#mpPlay");
+  if(pb.length) pb.text(musicOn ? "❚❚" : "▶");
+}
+function setMusic(on){
+  musicOn = on;
+  if(audioEl){
+    var st = $("#mpStatus"); st.removeClass("show"); st.text("");
+    try{ if(on) audioEl.play(); else audioEl.pause(); }catch(e){}
+  }
+  musicUI();
+}
+function openEnvelope(callback){
+  $("#gate").fadeOut(600, function(){ $(this).hide(); });
+  var env = $("#envelope");
+  if(!env.length){
+    env = $('<div id="envelope"><div class="env-card"><div class="env-flap"></div><div class="env-letter"><div class="env-seal">ZAF</div><div class="env-lines"><div></div><div></div><div></div></div></div></div></div>');
+    $("body").append(env);
+  }
+  env.css("display","flex");
+  env[0].offsetHeight; // reflow
+  env.addClass("env-open");
+  // sedikit konfet saat amplop terbuka (tak berlebihan)
+  setTimeout(function(){ try{ if(window.confettiBurst) window.confettiBurst(22); }catch(e){} }, 450);
+  setTimeout(function(){
+    env.removeClass("env-open").css("display","none");
+    if(typeof callback === "function") callback();
+  }, 1400);
+}
+function playTrack(i){
+  if(i < 0) i = n - 1; if(i >= n) i = 0;
+  curTrack = i;
+  var t = PLAYLIST[curTrack];
+  mpSet("mpTitle", t.t);
+  if(audioEl){ try{ audioEl.src = t.f; audioEl.load(); if(musicOn) audioEl.play(); }catch(e){} }
+  $(".mp-song").each(function(){
+    var self = $(this);
+    self.toggleClass("active", parseInt(self.attr("data-i"), 10) === curTrack);
+  });
+}
+$("#mpPrev").on("click", function(){ playTrack(curTrack - 1); setMusic(true); });
+$("#mpNext").on("click", function(){ playTrack(curTrack + 1); setMusic(true); });
+$("#mpPlay").on("click", function(){ setMusic(!musicOn); });
+$("#mpListToggle").on("click", function(){ $("#mpPlaylist").toggle(); });
+$(".mp-song").on("click", function(){
+  playTrack(parseInt($(this).attr("data-i"), 10)); setMusic(true);
+  $("#mpPlaylist").hide();
+});
+if(audioEl){
+  audioEl.addEventListener("ended", function(){ if(PLAYLIST.length > 1) playTrack(curTrack + 1); });
+  audioEl.addEventListener("error", function(){
+    var st = $("#mpStatus");
+    st.text("⚠ File lagu belum ada — pasang di folder music/ dengan nama sesuai lagu.");
+    st.addClass("show");
+  });
 }
 $("#play").on("click", function(){
-  $("#gate").fadeOut(800, function(){ $(this).hide(); });
-  $(".main").fadeIn("slow");
-  try{ if(sf) sf.destroy(); }catch(e){}
-  setMusic(true);
-  setTimeout(function(){ if(window.confettiBurst) window.confettiBurst(35); }, 600);
-  observeReveals();
+  openEnvelope(function(){
+    $(".main").fadeIn("slow");
+    try{ if(sf) sf.destroy(); }catch(e){}
+    setMusic(true);
+    setTimeout(function(){ if(window.confettiBurst) window.confettiBurst(35); }, 600);
+    observeReveals();
+  });
 });
 $("#musicToggle").on("click", function(){ setMusic(!musicOn); });
 // thumbs
@@ -162,10 +227,10 @@ document.addEventListener("DOMContentLoaded", function () {
         DEG_TO_RAD = PI / 180,
         RAD_TO_DEG = 180 / PI,
         colors = [
-            ["#bcd9ff", "#4a90d9"],
-            ["#ffc9dd", "#e87ba8"],
-            ["#ffffff", "#8fc1f5"],
-            ["#f4a7c3", "#4a90d9"]
+            ["#5b1a25", "#8c3345"],
+            ["#b48a54", "#d9bd92"],
+            ["#f5efe4", "#d8c8b0"],
+            ["#8c3345", "#b48a54"]
         ];
 
     function Vector2(_x, _y) {

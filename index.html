@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Manrope:wght@300..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,9 +16,7 @@
   <div class="bg-orb orb-2"></div>
   <div class="bg-grain"></div>
   <canvas id="confetti"></canvas>
-  <audio class="song" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="bgm" class="song" preload="auto"></audio>
   <!-- GATE -->
   <div class="loader" id="gate">
     <div class="gate-card">
@@ -43,7 +41,9 @@
   </nav>
   <main class="main" style="display:none">
     <section class="hero">
+      <span class="hero-issue" aria-hidden="true">05</span>
       <div class="container">
+        <div class="hero-masthead reveal"><span>The Birthday Issue</span><span>Vol. 05 — MMXXVI</span></div>
         <div class="row align-items-center g-5">
           <div class="col-12 col-lg-5">
             <div class="photo-frame reveal">
@@ -104,6 +104,28 @@
         <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(2).jpeg" alt="Mylove 3" loading="lazy" /><figcaption><span>03 — Ketulusanmu</span><small>Kind and sincere</small></figcaption></figure>
         <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(3).jpeg" alt="Mylove 4" loading="lazy" /><figcaption><span>04 — Tawamu</span><small>Light of my days</small></figcaption></figure>
         <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-06%20at%2010.13.19%20(4).jpeg" alt="Mylove 5" loading="lazy" /><figcaption><span>05 — Kamu, Apa Adanya</span><small>And I love every part</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.51.jpeg" alt="Zahra New 06" loading="lazy" /><figcaption><span>06 — Memori 20.09</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52%20(1).jpeg" alt="Zahra New 07" loading="lazy" /><figcaption><span>07 — Memori 20.10</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card tall reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52%20(2).jpeg" alt="Zahra New 08" loading="lazy" /><figcaption><span>08 — Memori 20.11</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.52.jpeg" alt="Zahra New 09" loading="lazy" /><figcaption><span>09 — Memori 20.12</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.53%20(1).jpeg" alt="Zahra New 10" loading="lazy" /><figcaption><span>10 — Memori 20.13</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.53%20(2).jpeg" alt="Zahra New 11" loading="lazy" /><figcaption><span>11 — Memori 20.14</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.53.jpeg" alt="Zahra New 12" loading="lazy" /><figcaption><span>12 — Memori 20.15</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.54%20(1).jpeg" alt="Zahra New 13" loading="lazy" /><figcaption><span>13 — Memori 20.16</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.33.54.jpeg" alt="Zahra New 14" loading="lazy" /><figcaption><span>14 — Memori 20.17</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.34.10.jpeg" alt="Zahra New 15" loading="lazy" /><figcaption><span>15 — Memori 20.18</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.34.11%20(1).jpeg" alt="Zahra New 16" loading="lazy" /><figcaption><span>16 — Memori 20.19</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card tall reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.34.11%20(2).jpeg" alt="Zahra New 17" loading="lazy" /><figcaption><span>17 — Memori 20.20</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.34.11.jpeg" alt="Zahra New 18" loading="lazy" /><figcaption><span>18 — Memori 20.21</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.25%20(1).jpeg" alt="Zahra New 19" loading="lazy" /><figcaption><span>19 — Memori 20.22</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.25.jpeg" alt="Zahra New 20" loading="lazy" /><figcaption><span>20 — Memori 20.23</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.26%20(1).jpeg" alt="Zahra New 21" loading="lazy" /><figcaption><span>21 — Memori 20.24</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.26%20(2).jpeg" alt="Zahra New 22" loading="lazy" /><figcaption><span>22 — Memori 20.25</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card wide reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.26%20(3).jpeg" alt="Zahra New 23" loading="lazy" /><figcaption><span>23 — Memori 20.26</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.26.jpeg" alt="Zahra New 24" loading="lazy" /><figcaption><span>24 — Memori 20.27</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.27%20(1).jpeg" alt="Zahra New 25" loading="lazy" /><figcaption><span>25 — Memori 20.28</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card tall reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.27%20(2).jpeg" alt="Zahra New 26" loading="lazy" /><figcaption><span>26 — Memori 20.29</span><small>New memory</small></figcaption></figure>
+        <figure class="g-card reveal"><img src="mylove/WhatsApp%20Image%202026-09-09%20at%2019.35.27.jpeg" alt="Zahra New 27" loading="lazy" /><figcaption><span>27 — Memori 20.30</span><small>New memory</small></figcaption></figure>
       </div>
     </div></section>
     <section id="game-teaser" class="section"><div class="container">
@@ -111,7 +133,7 @@
         <div class="teaser-badge">BONUS STAGE — LANDSCAPE</div>
         <h2>Misi Ulang Tahun: <em>Kumpulkan Kue & Kartu!</em></h2>
         <p>Game mini ala Mario Bros di halaman khusus — wajib dimainkan dalam posisi <b>landscape</b>. Ambil kue & kartu, hindari musuh, kumpulkan foto Zahra di langit!</p>
-        <div class="teaser-steps"><span>🎂 3 Kue</span><span>💌 3 Kartu</span><span>📸 5 Foto</span><span>👾 5 Musuh</span></div>
+        <div class="teaser-steps"><span>🎂 3 Kue</span><span>💌 3 Kartu</span><span>📸 6 Foto</span><span>👾 5 Musuh</span></div>
         <a href="game.html" class="btn-gold">🎮 Main Sekarang — Buka Halaman Game</a>
         <div class="teaser-note">Di HP: putar HP ke landscape untuk pengalaman terbaik</div>
       </div>
@@ -149,6 +171,35 @@
       <div class="foot-actions"><button id="replayBtn" class="pill-btn">Putar Ulang Confetti</button><a href="#countdown" class="pill-btn ghost">Kembali ke Countdown</a></div>
     </div></div></footer>
   </main>
+  <!-- MUSIC PLAYER — piringan vinil berputar -->
+  <aside id="musicPlayer" class="music-player" aria-label="Music Player — Playlist Untuk Zahra">
+    <div class="mp-disc-wrap">
+      <div class="mp-disc">
+        <div class="mp-lbl">ZAF<small>05 . 11</small></div>
+      </div>
+      <div class="mp-arm"><i></i></div>
+    </div>
+    <div class="mp-body">
+      <div class="mp-track">
+        <div class="mp-title" id="mpTitle">About You</div>
+        <div class="mp-album">Playlist • Untuk Zahra ♥</div>
+      </div>
+      <div class="mp-controls">
+        <button id="mpPrev" class="mp-btn" title="Lagu sebelum">⏮</button>
+        <button id="mpPlay" class="mp-btn mp-play" title="Play / Pause">▶</button>
+        <button id="mpNext" class="mp-btn" title="Lagu setelah">⏭</button>
+      </div>
+      <button id="mpListToggle" class="mp-list-toggle">🎵 Semua Lagu ▾</button>
+      <div id="mpPlaylist" class="mp-playlist" style="display:none">
+        <button class="mp-song active" data-i="0">01 — About You</button>
+        <button class="mp-song" data-i="1">02 — Jakarta Hari Ini</button>
+        <button class="mp-song" data-i="2">03 — Dialog Rindu</button>
+        <button class="mp-song" data-i="3">04 — Dia Masa Lalumu, Aku Masa Depanmu</button>
+        <button class="mp-song" data-i="4">05 — Anti-Hero</button>
+      </div>
+      <div class="mp-status" id="mpStatus"></div>
+    </div>
+  </aside>
   <div id="lightbox" class="lightbox" aria-hidden="true"><button class="lb-close">&times;</button><img id="lbImg" src="" alt="preview" /><div class="lb-cap" id="lbCap"></div></div>
   <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
   <script src="js/jquery.js"></script>
