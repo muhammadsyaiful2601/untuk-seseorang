@@ -123,6 +123,72 @@ if(audioEl){
     st.addClass("show");
   });
 }
+});
+
+// ===== MUSIC PLAYER DRAGGABLE =====
+(function(){
+  var mp = document.getElementById("musicPlayer");
+  if(!mp) return;
+  var isDragging = false, startX, startY, initialLeft, initialTop;
+
+  try{
+    var saved = JSON.parse(localStorage.getItem("zahraMusicPos") || "null");
+    if(saved && typeof saved.left === "number" && typeof saved.top === "number"){
+      mp.style.left = saved.left + "px";
+      mp.style.top = saved.top + "px";
+      mp.style.right = "auto";
+      mp.style.bottom = "auto";
+    }
+  }catch(e){}
+
+  function client(e){ return e.touches ? e.touches[0] : e; }
+
+  mp.addEventListener("mousedown", onStart);
+  mp.addEventListener("touchstart", onStart, {passive:false});
+
+  function onStart(e){
+    var c = client(e);
+    isDragging = true;
+    startX = c.clientX; startY = c.clientY;
+    var rect = mp.getBoundingClientRect();
+    initialLeft = rect.left; initialTop = rect.top;
+    mp.style.transition = "none";
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("touchmove", onMove, {passive:false});
+    document.addEventListener("mouseup", onEnd);
+    document.addEventListener("touchend", onEnd);
+    e.preventDefault();
+  }
+
+  function onMove(e){
+    if(!isDragging) return;
+    var c = client(e);
+    var dx = c.clientX - startX, dy = c.clientY - startY;
+    var left = initialLeft + dx, top = initialTop + dy;
+    var maxW = Math.max(0, window.innerWidth - mp.offsetWidth);
+    var maxH = Math.max(0, window.innerHeight - mp.offsetHeight);
+    left = Math.min(maxW, Math.max(0, left));
+    top = Math.min(maxH, Math.max(0, top));
+    mp.style.left = left + "px";
+    mp.style.top = top + "px";
+    mp.style.right = "auto";
+    mp.style.bottom = "auto";
+    e.preventDefault();
+  }
+
+  function onEnd(){
+    if(!isDragging) return;
+    isDragging = false;
+    mp.style.transition = "";
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("touchmove", onMove);
+    document.removeEventListener("mouseup", onEnd);
+    document.removeEventListener("touchend", onEnd);
+    try{
+      localStorage.setItem("zahraMusicPos", JSON.stringify({left:parseFloat(mp.style.left||0), top:parseFloat(mp.style.top||0)}));
+    }catch(e){}
+  }
+})();
 $("#play").on("click", function(){
   openEnvelope(function(){
     $(".main").fadeIn("slow");
