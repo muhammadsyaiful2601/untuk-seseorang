@@ -123,7 +123,6 @@ if(audioEl){
     st.addClass("show");
   });
 }
-});
 
 // ===== MUSIC PLAYER DRAGGABLE =====
 (function(){
