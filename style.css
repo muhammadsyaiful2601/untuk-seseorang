@@ -304,11 +304,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--wine); outline-offs
   .letter-card{padding:30px 22px}
   .count-card{padding:26px 10px 22px}
   .count-card strong{font-size:42px}
-  .music-player{width:228px; right:12px; bottom:16px}
-  .mp-disc{width:60px; height:60px}
-  .mp-lbl{width:26px; height:26px}
-  .footer{padding:16px 0 64px}
-  .foot-inner{padding-top:40px}
+  body{padding-bottom:110px}
+  .music-player{width:100px; left:12px; bottom:14px; padding:8px 10px}
+  .mp-disc{width:56px; height:56px}
+  .mp-lbl{width:24px; height:24px}
+  .mp-body{font-size:10px}
+  .mp-title{font-size:13px}
+  .mp-album{font-size:8px}
+  .mp-btn{width:36px; height:32px; font-size:11px}
+  .mp-btn.mp-play{width:46px}
+  .mp-list-toggle{font-size:9px; padding:6px 0}
+  .mp-playlist{max-height:140px}
+  .footer{padding:14px 0 90px}
+  .foot-inner{padding-top:36px}
   .hero-meta{grid-template-columns:1fr 1fr; gap:18px}
 }
 #envelope{position:fixed; inset:0; z-index:1002; background:var(--paper-3); display:none; align-items:center; justify-content:center; padding:24px}
